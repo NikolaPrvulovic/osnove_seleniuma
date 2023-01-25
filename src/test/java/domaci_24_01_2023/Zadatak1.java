@@ -26,6 +26,7 @@ public class Zadatak1 {
         driver.manage().window().maximize();
 
         driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        Thread.sleep(200);
         driver.findElement(By.xpath("//*[@name='username']")).sendKeys("Admin");
         driver.findElement(By.xpath("//*[@name='password']")).sendKeys("admin123");
         driver.findElement(By.xpath("//*[@type='submit']")).click();
@@ -37,8 +38,8 @@ public class Zadatak1 {
 
         Thread.sleep(1000);
 
-        driver.findElement(By.xpath("oxd-userdropdown-name")).click();
-        driver.findElement(By.className("oxd-userdropdown-link")).click();
+        driver.findElement(By.xpath("//*[contains(@class, 'oxd-userdropdown-name')]")).click();
+        driver.findElement(By.xpath("//*[contains(text(), 'Logout')]")).click();
 
         Thread.sleep(5000);
 
