@@ -9,7 +9,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class Helper {
@@ -54,6 +56,11 @@ public class Helper {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public void takeScreenshot(WebDriver driver, String pathNameWithFileName, String pictureExtension) throws IOException {
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String timestamp = new SimpleDateFormat("dd-MM-yyyy__hh-mm-ss").format(new Date());
+        Files.copy(file.toPath(), new File(pathNameWithFileName + " - " + timestamp + pictureExtension).toPath());
     }
 }
